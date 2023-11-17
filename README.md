@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+# GitHub Repository Viewer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a GitHub repository viewer application created using React, TypeScript, Material UI (switching to Chakra UI soon), and the GitHub API. It allows users to input a GitHub username and displays their repositories in a list. Users can filter repositories by name and programming language.
 
-## Available Scripts
+![App Screenshot](link-to-screenshot)
 
-In the project directory, you can run:
+[Link to Demo Video](link-to-demo-video)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Input field to enter a GitHub username
+- Display of user repositories in a list format
+- Filter functionality by repository name and programming language
+- Responsive interface following UX principles
+- Dark/light mode theme switcher
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation
 
-### `npm test`
+1. Clone the repository.
+2. Install dependencies using `pnpm install`.
+3. Start the application using `pnpm start`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
 
-### `npm run build`
+1. Enter a valid GitHub username in the input field.
+2. View the list of repositories belonging to the entered user.
+3. Use the search/filter options to find repositories by name or language.
+4. Toggle between dark and light mode using the theme switcher.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React
+- TypeScript
+- Material UI (switching to Chakra UI)
+- GitHub API
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## API Usage
 
-### `npm run eject`
+The app uses the official GitHub API to fetch repositories based on the entered username. It handles requests to retrieve repository information.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Future Improvements
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Implementation of additional features
+- Transition to Chakra UI for improved UI components
+- Enhancements to search/filter functionality
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Contributing
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+If you'd like to contribute to this project, please fork the repository and submit a pull request. Follow the guidelines outlined in CONTRIBUTING.md.
 
-## Learn More
+## Credits
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Laws of UX for inspiration on UX design principles
+- GitHub API for repository data
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
+
+This project is licensed under the [MIT License](link-to-license).
