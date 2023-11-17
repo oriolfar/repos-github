@@ -1,6 +1,6 @@
-import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { AppBar, Toolbar, Typography, IconButton, Box } from '@mui/material';
+import NightsStayIcon from '@mui/icons-material/NightsStay';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 
 interface TopBarProps {
     onThemeChange: () => void;
@@ -14,8 +14,9 @@ const TopBar: React.FC<TopBarProps> = ({ onThemeChange, darkMode }) => {
                 <Typography variant="h6" component="div">
                     Let's find some repos!
                 </Typography>
+                <Box sx={{ flexGrow: 1 }} />
                 <IconButton edge="end" color="inherit" onClick={onThemeChange}>
-                    {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+                    {darkMode ? <WbSunnyIcon /> : <NightsStayIcon />}
                 </IconButton>
             </Toolbar>
         </AppBar>

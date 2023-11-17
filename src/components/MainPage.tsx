@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import RepoList from './RepoList';
-// Import other components as needed
+import Search from './Search';
 
 const MainPage = () => {
+    const [username, setUsername] = useState('');
+    const [submittedUsername, setSubmittedUsername] = useState('');
+
+    const handleUsernameChange = (newUsername: string) => {
+        setUsername(newUsername);
+    };
+
+    const handleSearch = () => {
+        setSubmittedUsername(username);
+    };
+
     return (
         <Box padding={10}>
-            <RepoList />
-            {/* Add other components as needed */}
+            <Search username={username} onUsernameChange={handleUsernameChange} onSearch={handleSearch} />
+            <RepoList username={submittedUsername} />
         </Box>
     );
 };

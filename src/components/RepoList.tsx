@@ -12,6 +12,10 @@ interface ApiRepository {
     // Define only the fields you need
 }
 
+interface RepositoryListProps {
+    username: string;
+}
+
 interface Repository {
     id: number;
     name: string;
@@ -19,21 +23,10 @@ interface Repository {
     stars: number;
 }
 
-const RepoList = () => {
+const RepoList: React.FC<RepositoryListProps> = ({ username }) => {
     const [repositories, setRepositories] = useState<Repository[]>([]);
-
-    useEffect(() => {
-        githubService.getRepos('visionmedia').then((repos: ApiRepository[]) => {
-            const mappedRepos = repos.map((repo: ApiRepository) => ({
-                id: repo.id,
-                name: repo.name,
-                language: repo.language,
-                stars: repo.stargazers_count,
-            }));
-            setRepositories(mappedRepos);
-        });
-    }, []);
-
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     const [showScroll, setShowScroll] = useState(false);
 
     const checkScrollTop = useCallback(() => {
@@ -44,11 +37,6 @@ const RepoList = () => {
         }
     }, [showScroll]);
 
-    useEffect(() => {
-        window.addEventListener('scroll', checkScrollTop);
-        return () => window.removeEventListener('scroll', checkScrollTop);
-    }, [checkScrollTop]);
-
     const scrollTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -56,7 +44,50 @@ const RepoList = () => {
     useEffect(() => {
         window.addEventListener('scroll', checkScrollTop);
         return () => window.removeEventListener('scroll', checkScrollTop);
-    }, []);
+    }, [checkScrollTop]);
+
+    useEffect(() => {
+        if (username) {
+            setLoading(true);
+            setError(null);
+            githubService.checkUserExists(username)
+                .then((exists) => {
+                    if (exists) {
+                        githubService.getRepos(username)
+                            .then((repos: ApiRepository[]) => {
+                                const mappedRepos = repos.map((repo: ApiRepository) => ({
+                                    id: repo.id,
+                                    name: repo.name,
+                                    language: repo.language,
+                                    stars: repo.stargazers_count,
+                                }));
+                                setRepositories(mappedRepos);
+                                setLoading(false);
+                                setError(null);
+                            })
+                            .catch(() => {
+                                setError('Error fetching repositories');
+                                setLoading(false);
+                            });
+                    } else {
+                        setError('User not found');
+                        setLoading(false);
+                    }
+                });
+        }
+    }, [username]);
+
+    if (!username) {
+        return <div>Enter a username to search for repositories</div>;
+    }
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
 
     return (
         <div>
